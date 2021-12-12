@@ -33,11 +33,11 @@ public class BlobContainnerService
 
     public async Task<BlobItemResponse> UploadAsync(BlobItemUpload upload)
     {
-        var unicName = FileHelper.GetUnicName(upload.File.FileName);
-        var response = await _container.UploadBlobAsync(unicName, upload.File.OpenReadStream());
+        var uniqueName = FileHelper.GetUniqueName(upload.File.FileName);
+        var response = await _container.UploadBlobAsync(uniqueName, upload.File.OpenReadStream());
         return new BlobItemResponse
         {
-            Name = unicName,
+            Name = uniqueName,
             ContentType = upload.File.ContentType,
             Length = upload.File.Length,
             LastModified = response.Value.LastModified

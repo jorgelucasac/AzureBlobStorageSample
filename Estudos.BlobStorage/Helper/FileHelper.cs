@@ -2,7 +2,7 @@
 
 public static class FileHelper
 {
-    public static string GetUnicName(string name)
+    public static string GetUniqueName(string name)
     {
         return $"{Guid.NewGuid()}_{name}";
     }
