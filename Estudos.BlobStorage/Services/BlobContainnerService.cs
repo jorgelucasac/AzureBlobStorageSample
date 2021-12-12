@@ -12,7 +12,6 @@ public class BlobContainnerService
     public BlobContainnerService(BlobServiceClient blobServiceClient, IOptions<ContainnerSettings> blobSettings)
     {
         _container = blobServiceClient.GetBlobContainerClient(blobSettings.Value.Name);
-        _container.CreateIfNotExists();
     }
 
     public async Task<List<BlobItemResponse>> GetAllAsync()
@@ -45,5 +44,11 @@ public class BlobContainnerService
             Length = upload.File.Length,
             LastModified = response.Value.LastModified
         };
+    }
+
+    public async Task<int> DeleteAsync(string name)
+    {
+        var response = await _container.DeleteBlobAsync(name);
+        return response.Status;
     }
 }

@@ -30,5 +30,11 @@ namespace Estudos.BlobStorage.Controllers
         {
             return Ok(await _blobContainnerService.UploadAsync(upload));
         }
+
+        [HttpDelete("{name}")]
+        public async Task<IActionResult> DeleteAsync(string name)
+        {
+            return Ok(await _blobContainnerService.DeleteAsync(name));
+        }
     }
 }
