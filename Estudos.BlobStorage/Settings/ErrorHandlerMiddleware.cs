@@ -1,6 +1,6 @@
-﻿using System.Net;
+﻿using Azure;
+using System.Net;
 using System.Text.Json;
-using Azure;
 
 namespace Estudos.BlobStorage.Settings;
 
@@ -33,10 +33,12 @@ public class ErrorHandlerMiddleware
                     response.StatusCode = e.Status;
                     message = e.Message.Split(".")[0];
                     break;
+
                 case KeyNotFoundException e:
                     // not found error
                     response.StatusCode = (int)HttpStatusCode.NotFound;
                     break;
+
                 default:
                     // unhandled error
                     response.StatusCode = (int)HttpStatusCode.InternalServerError;

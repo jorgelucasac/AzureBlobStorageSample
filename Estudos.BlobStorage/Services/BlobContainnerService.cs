@@ -9,6 +9,7 @@ namespace Estudos.BlobStorage.Services;
 public class BlobContainnerService
 {
     private readonly BlobContainerClient _container;
+
     public BlobContainnerService(BlobServiceClient blobServiceClient, IOptions<ContainnerSettings> blobSettings)
     {
         _container = blobServiceClient.GetBlobContainerClient(blobSettings.Value.Name);
@@ -19,8 +20,6 @@ public class BlobContainnerService
         var blobs = _container.GetBlobsAsync();
         var results = new List<BlobItemResponse>();
         await foreach (var blob in blobs)
-        {
-
             results.Add(new BlobItemResponse
             {
                 Name = blob.Name,
@@ -28,7 +27,6 @@ public class BlobContainnerService
                 ContentType = blob.Properties.ContentType,
                 Length = blob.Properties.ContentLength
             });
-        }
 
         return results;
     }
