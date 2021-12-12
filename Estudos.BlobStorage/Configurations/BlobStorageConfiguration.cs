@@ -19,7 +19,7 @@ public static class BlobStorageConfiguration
             builder.AddBlobServiceClient(configuration.GetConnectionString("StorageAccount"));
         });
 
-        services.AddScoped<EstudosContainnerService>();
+        services.AddScoped<BlobContainnerService>();
         return services;
     }
 }

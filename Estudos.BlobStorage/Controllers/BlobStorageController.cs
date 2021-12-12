@@ -9,26 +9,26 @@ namespace Estudos.BlobStorage.Controllers
     [Route("api/v1/blob-storage")]
     public class BlobStorageController : ControllerBase
     {
-        private readonly EstudosContainnerService _estudosContainnerService;
+        private readonly BlobContainnerService _blobContainnerService;
 
         private readonly ILogger<BlobStorageController> _logger;
 
-        public BlobStorageController(ILogger<BlobStorageController> logger, EstudosContainnerService estudosContainnerService)
+        public BlobStorageController(ILogger<BlobStorageController> logger, BlobContainnerService blobContainnerService)
         {
             _logger = logger;
-            _estudosContainnerService = estudosContainnerService;
+            _blobContainnerService = blobContainnerService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {
-            return Ok(await _estudosContainnerService.GetAllAsync());
+            return Ok(await _blobContainnerService.GetAllAsync());
         }
 
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromForm] BlobItemUpload upload)
         {
-            return Ok(await _estudosContainnerService.UploadAsync(upload));
+            return Ok(await _blobContainnerService.UploadAsync(upload));
         }
     }
 }

@@ -6,10 +6,10 @@ using Microsoft.Extensions.Options;
 
 namespace Estudos.BlobStorage.Services;
 
-public class EstudosContainnerService
+public class BlobContainnerService
 {
     private readonly BlobContainerClient _container;
-    public EstudosContainnerService(BlobServiceClient blobServiceClient, IOptions<ContainnerSettings> blobSettings)
+    public BlobContainnerService(BlobServiceClient blobServiceClient, IOptions<ContainnerSettings> blobSettings)
     {
         _container = blobServiceClient.GetBlobContainerClient(blobSettings.Value.Name);
         _container.CreateIfNotExists();
